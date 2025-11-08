@@ -1,6 +1,6 @@
 // Authentication utilities
 // API URL is configured in config.js - make sure config.js is loaded first
-const API_BASE_URL = window.API_BASE_URL || 'https://medilink-backend-24jm.onrender.com//api';
+const API_BASE_URL = window.API_BASE_URL || 'https://medilink-backend-24jm.onrender.com/api';
 
 const auth = {
     // Get token from localStorage
@@ -153,4 +153,5 @@ const auth = {
         }
     }
 };
+
 
