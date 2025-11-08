@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard - MediLink</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">
+                <strong>🩺 MediLink</strong> - Doctor
+            </a>
+            <div class="navbar-nav ms-auto">
+                <span class="navbar-text me-3" id="userName"></span>
+                <button class="btn btn-outline-light btn-sm" onclick="auth.logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <div class="dashboard-header">
+            <h2>Doctor Dashboard</h2>
+            <p class="text-muted mb-0">Manage patients, assign tests, and create prescriptions</p>
+        </div>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mb-4" id="doctorTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="search-tab" data-bs-toggle="tab" data-bs-target="#search" type="button">Search Patient</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="create-tab" data-bs-toggle="tab" data-bs-target="#create" type="button">Create Patient</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="lab-test-tab" data-bs-toggle="tab" data-bs-target="#lab-test" type="button">Assign Lab Test</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="prescription-tab" data-bs-toggle="tab" data-bs-target="#prescription" type="button">Create Prescription</button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="doctorTabContent">
+            <!-- Search Patient Tab -->
+            <div class="tab-pane fade show active" id="search" role="tabpanel">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="searchPatientId" placeholder="Enter Patient ID">
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-primary" onclick="doctor.searchPatient()">Search</button>
+                            </div>
+                        </div>
+                        <div id="patientSearchResult"></div>
+                        <div id="patientReportsContainer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create Patient Tab -->
+            <div class="tab-pane fade" id="create" role="tabpanel">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="createPatientForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="patientName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Age</label>
+                                    <input type="number" class="form-control" id="patientAge" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Gender</label>
+                                    <select class="form-select" id="patientGender" required>
+                                        <option value="">Select</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Contact</label>
+                                    <input type="text" class="form-control" id="patientContact" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Birth Year</label>
+                                    <input type="number" class="form-control" id="patientBirthYear" required min="1900" max="2024">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Photo (Optional)</label>
+                                    <input type="file" class="form-control" id="patientPhoto" accept="image/*">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Email (for login) <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="patientEmail" required placeholder="patient@example.com">
+                                    <small class="text-muted">This will be used for patient login</small>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Password (for login) <span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control" id="patientPassword" required minlength="6" placeholder="Minimum 6 characters">
+                                    <small class="text-muted">Share this securely with the patient</small>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create Patient</button>
+                        </form>
+                        <div id="createPatientAlert"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assign Lab Test Tab -->
+            <div class="tab-pane fade" id="lab-test" role="tabpanel">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="assignLabTestForm">
+                            <div class="mb-3">
+                                <label class="form-label">Patient ID</label>
+                                <input type="text" class="form-control" id="labTestPatientId" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Test Name</label>
+                                <input type="text" class="form-control" id="labTestName" required placeholder="e.g., Blood Test, X-Ray">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Assign Lab Test</button>
+                        </form>
+                        <div id="assignLabTestAlert"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create Prescription Tab -->
+            <div class="tab-pane fade" id="prescription" role="tabpanel">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="createPrescriptionForm">
+                            <div class="mb-3">
+                                <label class="form-label">Patient ID</label>
+                                <input type="text" class="form-control" id="prescriptionPatientId" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Medicines (One per line or comma-separated)</label>
+                                <textarea class="form-control" id="prescriptionMedicines" rows="5" required placeholder="Medicine 1&#10;Medicine 2&#10;Medicine 3"></textarea>
+                                <small class="text-muted">Enter each medicine on a new line or separate by commas</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create Prescription</button>
+                        </form>
+                        <div id="createPrescriptionAlert"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/doctor.js"></script>
+    <script>
+        // Check authentication
+        if (!auth.isAuthenticated()) {
+            window.location.href = '../login.html';
+        } else {
+            const user = auth.getUser();
+            if (user.role !== 'doctor') {
+                window.location.href = `../dashboard/${user.role}.html`;
+            } else {
+                document.getElementById('userName').textContent = `Dr. ${user.name}`;
+                doctor.init();
+            }
+        }
+    </script>
+</body>
+</html>
+
