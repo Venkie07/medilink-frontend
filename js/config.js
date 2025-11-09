@@ -6,7 +6,7 @@
     'use strict';
     
     // Configuration
-    const PRODUCTION_URL = 'https://your-backend-url.onrender.com/api'; // ⚠️ UPDATE THIS with your Render URL
+    const PRODUCTION_URL = 'https://medilink-backend-24jm.onrender.com/api'; // ⚠️ UPDATE THIS with your Render URL
     const DEVELOPMENT_URL = 'http://localhost:5000/api';
     
     // Auto-detect environment
@@ -19,4 +19,5 @@
     
     console.log('API Base URL:', window.API_BASE_URL);
 })();
+
 
