@@ -210,7 +210,6 @@ MediLink is designed for easy deployment on **Render**, utilizing its free tier 
 
 ## 🪪 License
 
-This project is licensed under the **MIT License**.
-You are free to fork, modify, and enhance the project, provided proper attribution is maintained.
+This project is published under All Rights Reserved copyright. The source code is visible for review and reference only. No use, modification, copying, or distribution is permitted without explicit written permission from the author.
 
 -----
