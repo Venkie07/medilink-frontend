@@ -10,8 +10,8 @@
 
 **MediLink** is a full-stack, role-based healthcare management platform designed to create a **unified digital ecosystem** connecting patients, doctors, labs, pharmacies, and administrators. It enables **seamless communication**, appointment booking, report management, prescriptions, and medicine tracking, making healthcare efficient and accessible for all stakeholders.
 
-> **Live Demo (coming soon\!):** [https://medilink-frontend-XXXX.onrender.com](https://www.google.com/search?q=https://medilink-frontend-XXXX.onrender.com)
-> (Replace `XXXX` with your actual Render URL slug)
+> **Live Demo :** [CLICK HERE!](https://venkie07.github.io/medilink-frontend/index.html))
+> 
 
 -----
 
@@ -202,7 +202,7 @@ MediLink is designed for easy deployment on **Render**, utilizing its free tier 
 
 **Developed with 💙 by:**
 
-  * **Venkateswaran K (Kyro / Venkie)**
+  * **Venkateswaran K **
       * B.Tech Artificial Intelligence & Data Science,
       * Sri Sairam Institute of Technology, Chennai.
 
