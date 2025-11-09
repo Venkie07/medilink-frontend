@@ -57,7 +57,7 @@ MediLink streamlines healthcare interactions through distinct user roles:
 
 **Developed with 💙 by:**
 
-  * **Venkateswaran K **
+  * **[Venkateswaran K](https://venkie07.github.io/profile/)**
       * B.Tech Artificial Intelligence & Data Science,
       * Sri Sairam Institute of Technology, Chennai.
 
